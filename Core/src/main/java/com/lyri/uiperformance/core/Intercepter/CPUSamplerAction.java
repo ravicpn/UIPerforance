@@ -84,10 +84,10 @@ public class CPUSamplerAction extends BaseSamplerAction {
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Log.d(TAG, "init randomfile failed");
+//            Log.d(TAG, "init randomfile failed");
         } catch (IOException e) {
             e.printStackTrace();
-            Log.d(TAG, "read file failed");
+//            Log.d(TAG, "read file failed");
         }
     }
 }

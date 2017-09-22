@@ -62,7 +62,7 @@ public class FPSSamplerAction extends BaseSamplerAction implements Choreographer
                 mFrameRendered = 0;
             }
 
-            Log.v("fps", mFrameRendered + " " + mFPS);
+//            Log.v("fps", mFrameRendered + " " + mFPS);
         } else {
             mLastFrameStartTime = currentTimeMillis;
         }
