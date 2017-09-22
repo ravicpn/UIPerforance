@@ -4,8 +4,9 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="monitor_bg">#F09FFFE0</color>
-    <color name="monitor_nomal_color">#ffffff</color>
-    <color name="monitor_error_color">#d0FF0000</color>
+    <color name="stroke">#15B87B</color>
+    <color name="monitor_bg">#809FFFE0</color>
+    <color name="monitor_nomal_color">#80000000</color>
+    <color name="monitor_error_color">#80FF0000</color>
 
 </resources>

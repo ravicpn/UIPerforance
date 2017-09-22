@@ -107,6 +107,7 @@ public class PerformanceCore implements Application.ActivityLifecycleCallbacks {
 
     /**
      * 判断APP是否为前台应用
+     *
      * @return
      */
     private boolean isForegroundApp() {

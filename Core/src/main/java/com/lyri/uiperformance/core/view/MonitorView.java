@@ -16,6 +16,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lyri.uiperformance.R;
+import com.lyri.uiperformance.core.Utils;
 
 import java.util.HashMap;
 
@@ -55,9 +56,9 @@ public class MonitorView extends Thread implements IMonitorView, IMonitorRecord 
                 if (tv == null) {
                     tv = new TextView(mMonitorView.getContext());
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
-                    lp.setMargins(8, 8, 8, 8);
+                    lp.setMargins(8, 0, 8, 0);
                     tv.setLayoutParams(lp);
-                    tv.setTextSize(8);
+                    tv.setTextSize(Utils.dpToPixel(mContext, 8));
                     mMonitorView.addView(tv);
                     mMapView.put(tvName, tv);
                 }
@@ -170,12 +171,11 @@ public class MonitorView extends Thread implements IMonitorView, IMonitorRecord 
                 PixelFormat.TRANSLUCENT);
 
         params.gravity = Gravity.TOP | Gravity.END;
-        params.x = 20;
-        params.y = 20;
+        params.x = 0;
+        params.y = 0;
         mWindowManager.addView(mMonitorView, params);
 
-        GestureDetector gestureDetector = new GestureDetector(mMonitorView.getContext(), simpleOnGestureListener);
-        mMonitorView.setOnTouchListener(new FpsTouchListener(params, mWindowManager, gestureDetector));
+        mMonitorView.setOnTouchListener(new FpsTouchListener(params, mWindowManager));
         mMonitorView.setHapticFeedbackEnabled(false);
 
         isShow = true;
@@ -210,14 +210,6 @@ public class MonitorView extends Thread implements IMonitorView, IMonitorRecord 
 
     }
 
-    private GestureDetector.SimpleOnGestureListener simpleOnGestureListener = new GestureDetector.SimpleOnGestureListener() {
-        @Override
-        public boolean onDoubleTap(MotionEvent e) {
-            hide(false);
-            return super.onDoubleTap(e);
-        }
-    };
-
     private static class FpsTouchListener implements View.OnTouchListener {
         private int initialX;
         private int initialY;
@@ -226,18 +218,15 @@ public class MonitorView extends Thread implements IMonitorView, IMonitorRecord 
 
         private WindowManager.LayoutParams paramsF;
         private WindowManager windowManager;
-        private GestureDetector gestureDetector;
 
         public FpsTouchListener(WindowManager.LayoutParams paramsF,
-                                WindowManager windowManager, GestureDetector gestureDetector) {
+                                WindowManager windowManager) {
             this.windowManager = windowManager;
             this.paramsF = paramsF;
-            this.gestureDetector = gestureDetector;
         }
 
         @Override
         public boolean onTouch(View v, MotionEvent event) {
-            gestureDetector.onTouchEvent(event);
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN:
                     initialX = paramsF.x;

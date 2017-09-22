@@ -17,8 +17,8 @@ import java.util.regex.Pattern;
 
 public class MemSamplerAction extends BaseSamplerAction {
     private IMonitorRecord mMonitorRecord;
-    private final static String USED_MEM = "used_memory";
-    private final static String MAX_MEM = "max_memory";
+    private final static String USED_MEM = "Used";
+    private final static String MAX_MEM = "Total";
     private Handler mHandler = new Handler(Looper.getMainLooper());
 
     public MemSamplerAction(IMonitorRecord addMonitorRecord) {
