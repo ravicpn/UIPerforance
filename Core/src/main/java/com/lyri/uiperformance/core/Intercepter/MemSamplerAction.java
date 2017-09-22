@@ -8,6 +8,7 @@ import com.lyri.uiperformance.core.view.IMonitorRecord;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.text.DecimalFormat;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,8 +36,8 @@ public class MemSamplerAction extends BaseSamplerAction {
         mHandler.post(new Runnable() {
             @Override
             public void run() {
-                mMonitorRecord.addOneRecord(USED_MEM, getUseSize() + "KB", true);
-                mMonitorRecord.addOneRecord(MAX_MEM, getTotalMemory() + "M", true);
+                mMonitorRecord.addOneRecord(USED_MEM, String.format(Locale.getDefault(), "%.2f MB", getUseSize()), true);
+                mMonitorRecord.addOneRecord(MAX_MEM, String.format(Locale.getDefault(), "%d MB", getTotalMemory()), true);
             }
         });
     }
@@ -55,9 +56,9 @@ public class MemSamplerAction extends BaseSamplerAction {
      *
      * @return
      */
-    private long getUseSize() {
+    private float getUseSize() {
         Runtime runtime = Runtime.getRuntime();
-        return (runtime.totalMemory() - runtime.freeMemory()) >> 10;
+        return ((runtime.totalMemory() - runtime.freeMemory()) >> 10) / 1024.f;
     }
 
     /**

@@ -5,6 +5,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.widget.AppCompatTextView;
 
 import com.lyri.uiperformance.core.Intercepter.SamplerIntercepter;
 import com.lyri.uiperformance.core.view.IMonitorRecord;
@@ -54,6 +55,9 @@ public class PerformanceCore implements Application.ActivityLifecycleCallbacks {
         mStart = false;
         mSamplerThread.stopSampling();
         mMonitorViewWrapper.close();
+        if (mContext instanceof Application) {
+            ((Application) mContext).unregisterActivityLifecycleCallbacks(this);
+        }
     }
 
     @Override
