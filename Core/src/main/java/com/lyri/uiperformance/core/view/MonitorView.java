@@ -57,7 +57,7 @@ public class MonitorView extends Thread implements IMonitorView, IMonitorRecord 
                     LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(WRAP_CONTENT, WRAP_CONTENT);
                     lp.setMargins(8, 8, 8, 8);
                     tv.setLayoutParams(lp);
-                    tv.setTextSize(15);
+                    tv.setTextSize(8);
                     mMonitorView.addView(tv);
                     mMapView.put(tvName, tv);
                 }
